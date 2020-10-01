@@ -105,7 +105,7 @@
     </div>
 </div>
 
-<!--Main Navigation-->
+<!--Main Navigation Bar-->
 <header>
     <nav id="navbar" style="background-color:rgba(0,0,256, 0.1)" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
         <a class="navbar-brand" href="#"><strong>BhuPlots</strong></a>
