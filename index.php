@@ -1,580 +1,249 @@
+<?php
+  include('config.php');
+  session_start();
+  $data = "SELECT * FROM plot";
+  $data_result = mysqli_query($con,$data) or die(mysqli_error($con));
+?>
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>BhuPlots-Bhubaneswar Plots</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html>
+<head>
+	<meta charset="UTF-8">
+  	<meta name="description" content="Free Web tutorials">
+  	<meta name="keywords" content="HTML, CSS, JavaScript">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BhuPlots</title>
+	<link rel="icon" href="assets/img/logo.png" type="image/gif" sizes="16x16">
+	<!--Bootstrap stylesheets-->
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+	<link href="../assets/dist/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Oswald:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+	<!--Bootstrap scripts 1-->
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<!--External stylesheets-->
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/Footer-Dark.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/album.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/products.css">
 
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+	<!--Font awesome and animate css cdn links-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+  />
 
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<script>
+		$(document).ready(function(){
+			$("#myModal").modal('show');
+		});
+	</script>
+	<script>
+		  window.onscroll(function () {
+		    var nav = document.querySelector('.navbar');
+				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+					nav.classList.add('navbar-scrolled');
+				} else {
+					nav.classList.remove('navbar-scrolled')
+				}
 
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+		  });
+	</script>
+</head>
+<body>
 
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/style.css">
-    
-  </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-  
-  <div class="site-wrap">
-
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
+<!--Popup Modal-->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--<div class="modal-header">
+                <h4 class="modal-title">Subscribe our Newsletter</h4>
+            </div>-->
+            <div class="modal-body">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3><strong>Featured Posts</strong></h3><span class="badge badge-danger">Ad</span><br/><br/>
+							<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+							  <ol class="carousel-indicators">
+							    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+							    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+							    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+							  </ol>
+							  <div class="carousel-inner">
+							    <div class="carousel-item active">
+							      <img src="assets/img/modal-bg.jpg" class="d-block w-100" alt="..." onclick="window.location.href='#';">
+										<div class="carousel-caption d-none d-md-block">
+        							<button class="btn btn-primary" style="font-size: 10px !important;" onclick="window.location.href='#';">See details</button>
+      							</div>
+							    </div>
+							    <div class="carousel-item">
+							      <img src="assets/img/plots.jpg" class="d-block w-100" alt="..." onclick="window.location.href='#';">
+										<div class="carousel-caption d-none d-md-block">
+        							<button class="btn btn-primary" style="font-size: 10px !important;" onclick="window.location.href='#';">See details</button>
+      							</div>
+							    </div>
+							    <div class="carousel-item">
+							      <img src="assets/img/placeholder.jpg" class="d-block w-100" alt="..." onclick="window.location.href='#';">
+										<div class="carousel-caption d-none d-md-block">
+        							<button class="btn btn-primary" style="font-size: 10px !important;" onclick="window.location.href='#';">See details</button>
+      							</div>
+									</div>
+							  </div>
+							  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+							    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							    <span class="sr-only">Previous</span>
+							  </a>
+							  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							    <span class="sr-only">Next</span>
+							  </a>
+							</div>
+            </div>
         </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
     </div>
-   
-    
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+</div>
 
-      <div class="container">
-        <div class="row align-items-center">
-          
-          <div class="col-6 col-xl-2">
-            <h1 class="mb-0 site-logo m-0 p-0"><a href="index.html" class="mb-0">BhuPlots</a></h1>
-          </div>
-
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="#home-section" class="nav-link">Home</a></li>
-                <li><a href="#properties-section" class="nav-link">Properties</a></li>
-                <li><a href="#agents-section" class="nav-link">Agents</a></li>
-                <li><a href="#about-section" class="nav-link">About</a></li>
-                <li><a href="#news-section" class="nav-link">News</a></li>
-                <li><a href="#contact-section" class="nav-link">Contact</a></li>
-              </ul>
-            </nav>
-          </div>
-
-
-          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white float-right"><span class="icon-menu h3"></span></a></div>
-
+<!--Main Navigation-->
+<header>
+    <nav id="navbar" style="background-color:rgba(0,0,256, 0.1)" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+        <a class="navbar-brand" href="#"><strong>BhuPlots</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+								<div class="dropdown">
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#">Profile</a>
+											<div class="dropdown-content">
+												<a href="">Account</a>
+												<a href="">Information</a>
+											</div>
+	                </li>
+							</div>
+            </ul>
         </div>
-      </div>
-      
-    </header>
+    </nav>
 
-    
-    <div class="site-block-wrap">
-    <div class="owl-carousel with-dots">
-      <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/hero_1.jpg);" data-aos="fade" id="home-section">
-
-
-        <div class="container">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-md-6 mt-lg-5 text-center">
-              <h1 class="text-shadow">Buy &amp; Sell Property Here</h1>
-              <p class="mb-5 text-shadow">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident vitae, aut inventore repellendus. Iusto, assumenda! </p>
-              <p><a href="registration.php" target="_blank" class="btn btn-primary px-5 py-3">Get Started</a></p>
-              
-            </div>
-          </div>
-        </div>
-  
-        
-      </div>  
-  
-      <div class="site-blocks-cover overlay overlay-2" style="background-image: url(images/hero_2.jpg);" data-aos="fade" id="home-section">
-  
-  
-        <div class="container">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-md-6 mt-lg-5 text-center">
-              <h1 class="text-shadow">Find Your Perfect Property For Your Home</h1>
-              <p class="mb-5 text-shadow">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque quam doloribus reprehenderit dolore adipisci rerum?</p>
-              <p><a href="registration.php" target="_blank" class="btn btn-primary px-5 py-3">Get Started</a></p>
-              
-            </div>
-          </div>
-        </div>
-  
-        
-      </div>  
-    </div>   
-    
-  </div>      
-
-
-  <div class="site-section" id="properties-section">
-      <div class="container">
-        <div class="row large-gutters">
-          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5 ">
-            <div class="ftco-media-1">
-              <div class="ftco-media-1-inner">
-                <a href="property-single.html" class="d-inline-block mb-4"><img src="images/property_1.jpg" alt="FImageo" class="img-fluid"></a>
-                <div class="ftco-media-details">
-                  <h3>HD17 19 Utica Ave.</h3>
-                  <p>New York - USA</p>
-                  <strong>$20,000,000</strong>
-                </div>
-  
-              </div> 
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5 ">
-              <div class="ftco-media-1">
-                  <div class="ftco-media-1-inner">
-                    <a href="property-single.html" class="d-inline-block mb-4"><img src="images/property_2.jpg" alt="Image" class="img-fluid"></a>
-                    <div class="ftco-media-details">
-                      <h3>HD17 19 Utica Ave.</h3>
-                      <p>New York - USA</p>
-                      <strong>$20,000,000</strong>
-                    </div>
-      
-                  </div> 
-                </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5 ">
-              <div class="ftco-media-1">
-                  <div class="ftco-media-1-inner">
-                    <a href="property-single.html" class="d-inline-block mb-4"><img src="images/property_3.jpg" alt="Image" class="img-fluid"></a>
-                    <div class="ftco-media-details">
-                      <h3>HD17 19 Utica Ave.</h3>
-                      <p>New York - USA</p>
-                      <strong>$20,000,000</strong>
-                    </div>
-      
-                  </div> 
-                </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-5 mb-lg-5 ">
-              <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                  <a href="property-single.html" class="d-inline-block mb-4"><img src="images/property_1.jpg" alt="Image" class="img-fluid"></a>
-                  <div class="ftco-media-details">
-                    <h3>HD17 19 Utica Ave.</h3>
-                    <p>New York - USA</p>
-                    <strong>$20,000,000</strong>
-                  </div>
-    
-                </div> 
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5 mb-lg-5 ">
-                <div class="ftco-media-1">
-                    <div class="ftco-media-1-inner">
-                      <a href="property-single.html" class="d-inline-block mb-4"><img src="images/property_2.jpg" alt="Image" class="img-fluid"></a>
-                      <div class="ftco-media-details">
-                        <h3>HD17 19 Utica Ave.</h3>
-                        <p>New York - USA</p>
-                        <strong>$20,000,000</strong>
-                      </div>
-        
-                    </div> 
-                  </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5 mb-lg-5 ">
-                <div class="ftco-media-1">
-                    <div class="ftco-media-1-inner">
-                      <a href="property-single.html" class="d-inline-block mb-4"><img src="images/property_3.jpg" alt="Image" class="img-fluid"></a>
-                      <div class="ftco-media-details">
-                        <h3>HD17 19 Utica Ave.</h3>
-                        <p>New York - USA</p>
-                        <strong>$20,000,000</strong>
-                      </div>
-        
-                    </div> 
-                  </div>
-            </div>
-
-        </div>
-      </div>
+    <div class="view intro hm-purple-light" style="height: 500px;">
+    	<div class="centered">
+    		<h2><strong style="color: #010b1d !important;">Welcome to BhuPlots</strong></h2>
+    		<p><strong style="color: #010b1d !important;">Looking for someplace nice?</strong></p>
+    		<form action="search.php" method="post">
+    			<input type="text" name="search" placeholder="Search.." id="bar"><br/><br/>
+    			<button type="submit" class="btn btn-primary search">Search</button>
+    		</form>
+    	</div>
     </div>
-    
-    
-    
-    <section class="site-section" id="agents-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-7 text-left">
-            <h2 class="section-title mb-3">Real Estate Agents</h2>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus minima neque tempora reiciendis.</p>
-          </div>
-        </div>
-        <div class="row">
 
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="team-member">
-              <figure>
-                <ul class="social">
-                  <li><a href="#"><span class="icon-facebook"></span></a></li>
-                  <li><a href="#"><span class="icon-twitter"></span></a></li>
-                  <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                  <li><a href="#"><span class="icon-instagram"></span></a></li>
-                </ul>
-                <img src="images/person_3.jpg" alt="Image" class="img-fluid">
-              </figure>
-              <div class="p-3 bg-primary">
-                <h3 class="mb-2">Ben Thompson</h3>
-                <span class="position">Real Estate Agent</span>
-              </div>
-            </div>
-          </div>
+</header><br/>
+</div>
+<h3 class="pb-4 mb-4 font-italic border-bottom text-center" style="margin: 0 50px 0 0;">
+    Best Plots around you!
+</h3>
+<!--Product cards-->
+		<div class="row">
+			<!-- Product  -->
+<?php
+  while( $row = mysqli_fetch_assoc($data_result) ) {
+	 $name = $row['name'];
+	 $pid = $row['id'];
+?>
+			<div class="col-md-4 product-grid">
+				<div class="image">
+					<a href="product-details.php?pid=<?php echo $pid;?>">
+						<img src="admin/plots-images/<?php echo $row['image1']; ?>" class="w-100">
+						<div class="overlay">
+							<div class="detail">View Details</div>
+						</div>
+					</a>
+				</div>
+				<h5 class="text-center"><?php echo $row['name']; ?></h5>
+				<p class="text-center"><?php echo $row['org']; ?></p>
+				<p class="text-center"><?php echo $row['type']; ?></p>
+				<p class="text-center text-muted"><?php echo $row['location']; ?></p>
+				<p class="text-center">Rs. <?php echo $row['price']; ?> onwards</p>
+				<a href="product-details.php?pid=<?php echo $pid;?>" class="btn buy">See more details</a>
+			</div>
+			<!-- ./Product -->
+<?php
+		$_SESSION['id'] = $pid;
+		}
+        ?>
+</div><br/>
+<!--Testimonial section-->
+<div class="testimonial">
+	<h2 class="text-center">What Makes Us a Preferred Choice</h2><br/>
+	<div class="row" data-aos="fade-up">
+		<div class="col-6 col-md-4">
+			<div class="choices">
+				<i class="far fa-file-alt fa-6x"></i><br/><br/>
+				<h3>Maximum Choices</h3>
+				<p>15 Lac + & counting. New properties every hour to help buyers find the right home</p>
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="buyers">
+				<i class="far fa-check-circle fa-6x"></i><br/><br/>
+				<h3>Buyers Trust Us</h3>
+				<p>12 million users visit us every month for their buying and renting needs</p>
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="sellers">
+				<i class="far fa-thumbs-up fa-6x"></i><br/><br/>
+				<h3>Seller Prefer Us</h3>
+				<p>27,000 new properties posted daily, making us the biggest platform to sell & rent properties</p>
+			</div>
+		</div>
+	</div>
+</div><br/>
 
-          
-        </div>
-      </div>
-    </section>
-
-    <section class="py-5 bg-primary site-section how-it-works" id="howitworks-section">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-7 text-center">
-            <h2 class="section-title mb-3 text-black">How It Works</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 text-center">
-            <div class="pr-5 first-step">
-              <span class="text-black">01.</span>
-              <span class="custom-icon flaticon-house text-black"></span>
-              <h3 class="text-black">Find Property.</h3>
-              <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="pr-5 second-step">
-              <span class="text-black">02.</span>
-              <span class="custom-icon flaticon-coin text-black"></span>
-              <h3 class="text-dark">Buy Property.</h3>
-              <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="pr-5">
-              <span class="text-black">03.</span>
-              <span class="custom-icon flaticon-home text-black"></span>
-              <h3 class="text-dark">Outstanding Houses.</h3>
-              <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-          </div>
-        </div>
-      </div>  
-    </section>
-
-
-
-    <section class="site-section" id="about-section">
-      <div class="container">
-        
-        <div class="row large-gutters">
-          <div class="col-lg-6 mb-5">
-
-              <div class="owl-carousel slide-one-item with-dots">
-                  <div><img src="images/img_1.jpg" alt="Image" class="img-fluid"></div>
-                  <div><img src="images/img_2.jpg" alt="Image" class="img-fluid"></div>
-                  <div><img src="images/img_3.jpg" alt="Image" class="img-fluid"></div>
+ <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>Company Name</h3>
+                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
                 </div>
-
-          </div>
-          <div class="col-lg-6 ml-auto">
-            
-            <h2 class="section-title mb-3">Bhuplots Real Estate</h2>
-                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <p>Est qui eos quasi ratione nostrum excepturi id recusandae fugit omnis ullam pariatur itaque nisi voluptas impedit  Quo suscipit omnis iste velit maxime.</p>
-
-                <ul class="list-unstyled ul-check success">
-                  <li>Placeat maxime animi minus</li>
-                  <li>Dolore qui placeat maxime</li>
-                  <li>Consectetur adipisicing</li>
-                  <li>Lorem ipsum dolor</li>
-                  <li>Placeat molestias animi</li>
-                </ul>
-
-                <p><a href="#" class="btn btn-primary mr-2 mb-2">Learn More</a></p>
-            
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
-
-    <section class="site-section bg-light" id="services-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3">Services</h2>
-          </div>
-        </div>
-        <div class="row align-items-stretch">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-house"></span></div>
-              <div>
-                <h3>Find Property</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
-              </div>
+                <p class="copyright">Company Name © 2017</p>
             </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-coin"></span></div>
-              <div>
-                <h3>Buy Property</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-home"></span></div>
-              <div>
-                <h3>Beautiful Home</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
-              </div>
-            </div>
-          </div>
+        </footer>
+    </div>
+<!--Scripts-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
+<!--External scripts-->
+<script type="text/javascript" src="assets/js/navbar.js"></script>
 
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-flat"></span></div>
-              <div>
-                <h3>Buildings &amp; Lands</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-location"></span></div>
-              <div>
-                <h3>Property Locator</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="500">
-            <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary flaticon-mobile-phone"></span></div>
-              <div>
-                <h3>Mobile Apps</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                <p><a href="#">Learn More</a></p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    
-    <section class="site-section" id="news-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3">News &amp; Events</h2>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <a href="single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
-              <h2 class="font-size-regular"><a href="single.html" class="text-dark">Popular Real Estate Properties for 2019</a></h2>
-              <div class="meta mb-4">Allison Holmes <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="single.html">News</a></div>
-            </div> 
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <a href="single.html"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
-              <h2 class="font-size-regular"><a href="single.html" class="text-dark">Popular Real Estate Properties for 2019</a></h2>
-              <div class="meta mb-4">James Phelps <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="single.html">News</a></div>
-              
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <a href="single.html"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-              <h2 class="font-size-regular"><a href="single.html" class="text-dark">Popular Real Estate Properties for 2019</a></h2>
-              <div class="meta mb-4">Allison Holmes <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="single.html">News</a></div>
-            </div> 
-          </div>
-          
-        </div>
-      </div>
-    </section>
-
-   
-
-
-    <section class="site-section bg-light bg-image" id="contact-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title mb-3">Contact Us</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-7 mb-5">
-
-            
-
-            <form action="#" class="p-5 bg-white">
-              
-              <h2 class="h4 text-black mb-5">Get In Touch</h2> 
-
-              <div class="row form-group">
-                <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">First Name</label>
-                  <input type="text" id="fname" class="form-control">
-                </div>
-                <div class="col-md-6">
-                  <label class="text-black" for="lname">Last Name</label>
-                  <input type="text" id="lname" class="form-control">
-                </div>
-              </div>
-
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label class="text-black" for="email">Email</label> 
-                  <input type="email" id="email" class="form-control">
-                </div>
-              </div>
-
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label class="text-black" for="subject">Subject</label> 
-                  <input type="subject" id="subject" class="form-control">
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label class="text-black" for="message">Message</label> 
-                  <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <input type="submit" value="Send Message" class="btn btn-primary btn-md text-white">
-                </div>
-              </div>
-
-  
-            </form>
-          </div>
-          <div class="col-md-5">
-            
-            <div class="p-4 mb-3 bg-white">
-              <p class="mb-0 font-weight-bold">Address</p>
-              <p class="mb-4">Ghatikia,Bhubaneswar</p>
-
-              <p class="mb-0 font-weight-bold">Phone</p>
-              <p class="mb-4"><a href="#">+91 98765 43210</a></p>
-
-              <p class="mb-0 font-weight-bold">Email Address</p>
-              <p class="mb-0"><a href="#">bhuplots@gmail.com</a></p>
-
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="row">
-              <div class="col-md-5">
-                <h2 class="footer-heading mb-4">About Us</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
-              </div>
-              <div class="col-md-3 mx-auto">
-                <h2 class="footer-heading mb-4">Quick Links</h2>
-                <ul class="list-unstyled">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Contact Us</a></li>
-                </ul>
-              </div>
-              
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="mb-4">
-              <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
-            <form action="#" method="post" class="footer-subscribe">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-primary text-black" type="button" id="button-addon2">Send</button>
-                </div>
-              </div>
-            </form>  
-            </div>
-            
-            <div class="">
-              <h2 class="footer-heading mb-4">Follow Us</h2>
-                <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-            </div>
-
-
-          </div>
-        </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </footer>
-
-  </div> <!-- .site-wrap -->
-
-  <a href="#top" class="gototop"><span class="icon-angle-double-up"></span></a> 
-
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.countdown.min.js"></script>
-  <script src="js/bootstrap-datepicker.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.fancybox.min.js"></script>
-  <script src="js/jquery.sticky.js"></script>
-
-  
-  <script src="js/main.js"></script>
-    
-  </body>
+</body>
 </html>
